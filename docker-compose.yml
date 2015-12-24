@@ -1,0 +1,16 @@
+proxy:
+  image: kallikrein/proxy
+  ports:
+    - "80:80"
+  links:
+    - test
+  volumes:
+    - ./conf:/conf
+    - ./static:/static
+test:
+  image: kallikrein/node-tools
+  volumes:
+    - ./test-server:/src
+  expose:
+    - "1337"
+  command: nodemon app.js
